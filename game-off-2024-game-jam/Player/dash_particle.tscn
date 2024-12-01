@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://y7t3uk844q3g"]
+
+[ext_resource type="Texture2D" uid="uid://cehoiop2gur2c" path="res://Player/Dash Effect.png" id="1_iskp4"]
+[ext_resource type="Script" path="res://Player/dash_particle.gd" id="2_i6402"]
+
+[node name="dash particle" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_iskp4")
+script = ExtResource("2_i6402")

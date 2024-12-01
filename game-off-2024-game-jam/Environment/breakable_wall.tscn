@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqf81f4kmuwby"]
+
+[ext_resource type="Script" path="res://Environment/breakable_wall.gd" id="1_86ulh"]
+[ext_resource type="Texture2D" uid="uid://boees35kmgo4x" path="res://Environment/Game Off 2024.png" id="1_csp5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ng01"]
+atlas = ExtResource("1_csp5w")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tx5k"]
+atlas = ExtResource("1_csp5w")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6foe1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ng01")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tx5k")
+}],
+"loop": true,
+"name": &"whited",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0qgx"]
+size = Vector2(5.875, 5.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk7bd"]
+size = Vector2(32, 32)
+
+[node name="Breakable Wall" type="CharacterBody2D"]
+script = ExtResource("1_86ulh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6foe1")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d0qgx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hk7bd")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
